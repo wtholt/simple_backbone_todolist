@@ -1,0 +1,28 @@
+CrudApp.Routers.Todos = Backbone.Router.extend({
+  routes: {
+    '': 'index',
+    'entries/:id': 'show',
+    'edit': 'edit',
+  },
+
+  initialize: function() {
+    this.collection = new CrudApp.Collections.Todos();
+    this.collection.fetch({reset :true, add :true});
+  },
+
+  index: function() {
+    var view = new CrudApp.Views.TodosIndex({collection: this.collection});
+    $('#container').html(view.render().el);
+  },
+
+  show: function(id) {
+  },
+
+  edit: function() {
+    var view = new CrudApp.Views.Edit();
+    $('#container').html(view.render().el);
+  },
+
+
+
+});
